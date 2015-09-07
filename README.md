@@ -1,5 +1,4 @@
-# fuel-plugin-scaleio
-Fuel Plugin for ScaleIO
+fuel-plugin-scaleio
+============
 
-
-
+Plugin description
