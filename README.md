@@ -12,7 +12,7 @@
 
 This Project provides [Fuel plugins](https://www.mirantis.com/products/openstack-drivers-and-plugins/fuel-plugins/) for [EMC's ScaleIO](http://www.emc.com/storage/scaleio/index.htm). This project has 3 deployment options: 
 
-- **External ScaleIO Cluster**
+- **[External ScaleIO Cluster](https://github.com/emccode/fuel-plugin-scaleio-cinder-test/tree/master "External ScaleIO Cluster repository")**
 - **New ScaleIO Cluster with a standard OpenStack Deployment**
 - **New ScaleIO Cluster with a High Availability (HA) OpenStack Deployment**
 
