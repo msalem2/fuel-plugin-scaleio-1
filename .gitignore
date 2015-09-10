@@ -58,3 +58,7 @@ target/
 
 # Vagrant
 .vagrant/
+
+# Fuel Plugin Builder
+.build/
+*.rpm
