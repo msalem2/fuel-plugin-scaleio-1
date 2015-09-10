@@ -1,7 +1,41 @@
 attributes:
-  fuel-plugin-scaleio_text:
-    value: 'Set default value'
-    label: 'Text field'
-    description: 'Description for text field'
-    weight: 25
+
+  password:
+    type: "password"
+    weight: 10
+    value: ""
+    label: "Password"
+    description: "Type a password"
+    regex:
+      source: '^[\S]{4,}$'
+      error: "You must provide a password with at least 4 characters"
+
+  version:
+    type: "select"
+    weight: 20
+    value: "1.31-2333.2"
+    label: "Version"
+    description: "Select the ScaleIO version"
+    values:
+      - data: "1.31-2333.2"
+      - label: "1.31-2333.2"
+
+  gw_password:
+    type: "password"
+    weight: 30
+    value: ""
+    label: "Password"
+    description: "Type a password for the gateway"
+    regex:
+      source: '^[\S]{4,}$'
+      error: "You must provide a password with at least 4 characters"
+
+  cluster_name:
     type: "text"
+    weight: 40
+    value: "cluster1"
+    label: "Cluster name"
+    description: "Name of the ScaleIO cluster"
+    regex:
+      source: '\S'
+      error: 'Error field cannot be empty'
