@@ -1,6 +1,6 @@
 $scaleio = hiera('scaleio')
 
-$mdm_ip = ?
+$mdm_ip = '192.168.1.12'
 
 $sio_sds_device = {
   'tb.scaleio.local' => {
