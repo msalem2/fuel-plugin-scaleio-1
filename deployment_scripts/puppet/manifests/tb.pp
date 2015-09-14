@@ -1,5 +1,7 @@
 $scaleio = hiera('scaleio')
 
+include scaleio_fuel::download
+
 $mdm_ip = '192.168.1.12'
 
 $sio_sds_device = {
