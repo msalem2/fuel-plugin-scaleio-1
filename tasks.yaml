@@ -10,49 +10,49 @@
     puppet_modules: puppet/:/etc/puppet/modules
     timeout: 600
 - role: ['scaleio-gw']
-  stage: post_deployment/2100
+  stage: post_deployment/2050
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/gateway.pp
     puppet_modules: puppet/modules
     timeout: 600
 - role: ['scaleio-mdm']
-  stage: post_deployment/3000
+  stage: post_deployment/2100
   type: puppet
   parameters:
     puppet_manifest: download_scaleio_rpms.pp
     puppet_modules: puppet/:/etc/puppet/modules
     timeout: 600
 - role: ['scaleio-mdm']
-  stage: post_deployment/3101
+  stage: post_deployment/2150
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/mdm.pp
     puppet_modules: puppet/modules
     timeout: 600
 - role: ['scaleio-tb']
-  stage: post_deployment/4000
+  stage: post_deployment/2200
   type: puppet
   parameters:
     puppet_manifest: download_scaleio_rpms.pp
     puppet_modules: puppet/:/etc/puppet/modules
     timeout: 600
 - role: ['scaleio-tb']
-  stage: post_deployment/4102
+  stage: post_deployment/2250
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/tb.pp
     puppet_modules: puppet/modules
     timeout: 600
 - role: ['scaleio-cinder']
-  stage: post_deployment/5000
+  stage: post_deployment/2300
   type: puppet
   parameters:
     puppet_manifest: download_scaleio_rpms.pp
     puppet_modules: puppet/:/etc/puppet/modules
     timeout: 600
 - role: ['scaleio-cinder']
-  stage: post_deployment/5200
+  stage: post_deployment/2350
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/cinder.pp
