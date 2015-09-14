@@ -18,7 +18,7 @@ class download_scaleio_rpms {
          }->
     # unzip scaleio zip
     exec{ "unzip_scaleio_files":
-           command  => "unzip -x /tmp/scaleio_download.zip -d /tmp/scaleio/",
+           command  => "unzip -o /tmp/scaleio_download.zip -d /tmp/scaleio/",
            path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
     }->
     #Copy EMC-ScaleIO-callhome rpm
