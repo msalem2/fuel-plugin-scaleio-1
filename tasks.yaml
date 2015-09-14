@@ -2,8 +2,15 @@
 # here you can also specify several roles, for example
 # ['cinder', 'compute'] will be applied only on
 # cinder and compute nodes
-- role: ['scaleio-gw']
+- role: ['primary-controller']
   stage: post_deployment/2000
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/check_environment_configuration.pp
+    puppet_modules: puppet/modules
+    timeout: 300
+- role: ['scaleio-gw']
+  stage: post_deployment/2001
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/download_scaleio_rpms.pp

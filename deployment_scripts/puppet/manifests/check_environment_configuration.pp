@@ -1,9 +1,10 @@
 $scaleio = hiera('scaleio')
 
 if $scaleio['metadata']['enabled'] {
-    notice("Enable ScaleIO cluster integration in $deployment_mode")
+    notice("ScaleIO plugin enabled in $deployment_mode mode")
 
+    #TODO: Add checks for ScaleIO plugin
 
 } else {
-    notice("Disable ScaleIO cluster integration")
+    notice("ScaleIO plugin disabled")
 }
