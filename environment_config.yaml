@@ -1,11 +1,16 @@
 attributes:
-
+  scaleio_repo:
+    value: ''
+    label: 'ScaleIO repo URL'
+    description: 'Repo URL for ScaleIO software'
+    weight: 4
+    type: "text"
   password:
     type: "password"
     weight: 10
     value: ""
-    label: "Password"
-    description: "Type a password"
+    label: "Admin Password"
+    description: "Type ScaleIO Admin password"
     regex:
       source: '^[\S]{4,}$'
       error: "You must provide a password with at least 4 characters"
@@ -38,4 +43,27 @@ attributes:
     description: "Name of the ScaleIO cluster"
     regex:
       source: '\S'
-      error: 'Error field cannot be empty'
+  protection_domain:
+    value: ''
+    label: 'ScaleIO protection domain'
+    description: 'Protection domain for ScaleIO'
+    weight: 45
+    type: "text"
+  storage_pool_1:
+    value: ''
+    label: 'ScaleIO storage pool 1'
+    description: 'First storage pool for ScaleIO'
+    weight: 50
+    type: "text"
+  drive_list_1:
+    value: ''
+    label: 'Driver labels for the first storage pool'
+    description: 'Comma separated list of driver labels for the first storage pool'
+    weight: 55
+    type: "text"
+  fault_sets:
+    value: ''
+    label: 'Fault sets list'
+    description: 'Comma separated list of fault sets'
+    weight: 60
+    type: "text"
