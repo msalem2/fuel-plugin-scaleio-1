@@ -1,7 +1,6 @@
 class scaleio_fuel::download {
 
-    $version = $facts['operatingsystemmajrelease']
-
+    $version=6
     $plugin_settings = hiera('scaleio')
     $scaleio_repo = $plugin_settings['scaleio_repo']
 
@@ -29,10 +28,40 @@ class scaleio_fuel::download {
            path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
     }->
 
-    #Copy EMC-ScaleIO rpm files
-    exec {"Copy_EMC-ScaleIO-rpms":
-           command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/*.rpm /tmp/scaleio/rpms/.",
+    #Copy EMC-ScaleIO-callhome rpm
+    exec {"Copy_EMC-ScaleIO-callhome":
+           command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-callhome*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-callhome.rpm",
            path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
           }->
+    #Copy EMC-ScaleIO-lia rpm
+    exec {"Copy_EMC-ScaleIO-lia":
+          command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-lia*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-lia.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }->
+    #Copy EMC-ScaleIO-mdm rpm
+    exec {"Copy_EMC-ScaleIO-mdm":
+          command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-mdm*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-mdm.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }->
+    #Copy EMC-ScaleIO-tb rpm
+    exec {"Copy_EMC-ScaleIO-tb":
+          command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-tb*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-tb.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }->
+    #Copy EMC-ScaleIO-sds rpm
+    exec {"Copy_EMC-ScaleIO-sds":
+          command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-sds*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-sds.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }->
+    #Copy EMC-ScaleIO-sdc rpm
+    exec {"Copy_EMC-ScaleIO-sdc":
+          command  => "cp /tmp/scaleio/ScaleIO_*_RHEL${version}_Download/ScaleIO_*_RHEL${version}_Download/EMC-ScaleIO-sdc*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-sdc.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }->
+    #Copy EMC-ScaleIO-gateway rpm
+    exec {"Copy_EMC-ScaleIO-gateway":
+          command  => "cp /tmp/scaleio/ScaleIO_*_Gateway_for_Linux_Download/ScaleIO_*_Gateway_for_Linux_Download/EMC-ScaleIO-gateway*.rpm /tmp/scaleio/rpms/EMC-ScaleIO-gateway.rpm",
+          path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    }
 
 }

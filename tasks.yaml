@@ -30,6 +30,13 @@
     puppet_manifest: puppet/manifests/tb.pp
     puppet_modules: puppet/modules
     timeout: 600
+- role: ['scaleio-sds']
+  stage: post_deployment/2300
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/sds.pp
+    puppet_modules: puppet/modules
+    timeout: 600
 
 # "reboot" task reboots the nodes and waits until they get back online
 # - role: '*'
