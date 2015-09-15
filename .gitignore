@@ -62,3 +62,5 @@ target/
 # Fuel Plugin Builder
 .build/
 *.rpm
+Documentation/~$$fuel-plugin-scaleio.~vsd
+Documentation/OS-Deployment-with-existing-ScaleIO/~$Fuel Plugins for ScaleIO.pptx
