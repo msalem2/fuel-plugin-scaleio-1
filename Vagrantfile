@@ -2,16 +2,18 @@
 # vi: set ft=ruby :
 
 $script = <<SCRIPT
-sudo apt-get update
-sudo apt-get install git createrepo rpm dpkg-dev python-pip -y
+sudo yum update -y
+sudo yum install python-devel createrepo rpm rpm-build dpkg-devel python-pip -y
 sudo pip install fuel-plugin-builder
 SCRIPT
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "puphpet/centos65-x64"
 
   config.vm.hostname = "plugin-builder"
+
+  config.ssh.pty = true
 
   config.vm.synced_folder ".", "/home/vagrant/src"
 
