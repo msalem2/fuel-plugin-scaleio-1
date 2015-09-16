@@ -9,34 +9,46 @@
     puppet_manifest: puppet/manifests/check_environment_configuration.pp
     puppet_modules: puppet/modules
     timeout: 300
-- role: ['scaleio-gw']
+
+
+
+- role: ['primary-controller', 'controller']
   stage: post_deployment/2050
   type: puppet
   parameters:
-    puppet_manifest: puppet/manifests/gateway.pp
+    puppet_manifest: puppet/manifests/controller.pp
     puppet_modules: puppet/modules
-    timeout: 600
-- role: ['scaleio-mdm']
-  stage: post_deployment/2150
-  type: puppet
-  parameters:
-    puppet_manifest: puppet/manifests/mdm.pp
-    puppet_modules: puppet/modules
-    timeout: 600
-- role: ['scaleio-tb']
-  stage: post_deployment/2250
-  type: puppet
-  parameters:
-    puppet_manifest: puppet/manifests/tb.pp
-    puppet_modules: puppet/modules
-    timeout: 600
-- role: ['scaleio-sds']
-  stage: post_deployment/2300
-  type: puppet
-  parameters:
-    puppet_manifest: puppet/manifests/sds.pp
-    puppet_modules: puppet/modules
-    timeout: 600
+    timeout: 300
+
+# - role: ['scaleio-gw']
+#   stage: post_deployment/2050
+#   type: puppet
+#   parameters:
+#     puppet_manifest: puppet/manifests/gateway.pp
+#     puppet_modules: puppet/modules
+#     timeout: 600
+# - role: ['scaleio-mdm']
+#   stage: post_deployment/2150
+#   type: puppet
+#   parameters:
+#     puppet_manifest: puppet/manifests/mdm.pp
+#     puppet_modules: puppet/modules
+#     timeout: 600
+# - role: ['scaleio-tb']
+#   stage: post_deployment/2250
+#   type: puppet
+#   parameters:
+#     puppet_manifest: puppet/manifests/tb.pp
+#     puppet_modules: puppet/modules
+#     timeout: 600
+# - role: ['scaleio-sds']
+#   stage: post_deployment/2300
+#   type: puppet
+#   parameters:
+#     puppet_manifest: puppet/manifests/sds.pp
+#     puppet_modules: puppet/modules
+#     timeout: 600
+
 
 # "reboot" task reboots the nodes and waits until they get back online
 # - role: '*'
