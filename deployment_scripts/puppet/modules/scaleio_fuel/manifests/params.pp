@@ -15,24 +15,22 @@ class scaleio_fuel::params
     $controller_internal_addresses = nodes_to_hash($controller_nodes,'name','internal_address')
     $controller_ips = ipsort(values($controller_internal_addresses))
 
-    if $controller_nodes.length < 4 {
-        #TODO: assign nodes to ScaleIO roles. e.g. 1=>mdm1, 2=>mdm2, 3=>tb, 4=>gw, 5...=>sds
-        fail("ScaleIO plugin needs at least 4 controller nodes")
+    if size($controller_nodes) < 4 {
+        # TODO: assign nodes to ScaleIO roles. e.g. 1=>mdm1, 2=>mdm2, 3=>tb,
+        # 4=>gw, 5...=>sds
+        fail('ScaleIO plugin needs at least 4 controller nodes')
     }
 
-    case $controller_ips.index($::ipaddress) {
-      0: { $role = 'mdm' },
-      1: { $role = 'mdm'},
-      2: { $role = 'tb'},
-      3: { $role = 'gw'}
-    }
+    notice("IP Address ${::ipaddress}")
 
-    $mdm_ips = $controller_ips.slice(0, 2)
+    $role = 'mdm'
+
+    $mdm_ips = $controller_ips[0]
     $tb_ip = $controller_ips[2]
     $gw_ip = $controller_ips[3]
 
     #TODO: Populate $sio_sds_device with real information
-    $sio_sds_device = Hash.new
+    #$sio_sds_device = Hash.new
 
     # $nodes_hash = $::fuel_settings['nodes']
     # $mdm_nodes = filter_nodes($nodes_hash,'role','scaleio-mdm')
