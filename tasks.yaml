@@ -3,7 +3,8 @@
 # ['cinder', 'compute'] will be applied only on
 # cinder and compute nodes
 - role: ['primary-controller']
-  stage: post_deployment/2000
+  # stage: post_deployment/2000
+  stage: pre_deployment/2000
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/check_environment_configuration.pp
@@ -13,7 +14,8 @@
 
 
 - role: ['primary-controller', 'controller']
-  stage: post_deployment/2050
+  # stage: post_deployment/2050
+  stage: pre_deployment/2050
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/controller.pp
