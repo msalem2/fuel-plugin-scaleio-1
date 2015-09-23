@@ -1,7 +1,4 @@
-class scaleio_fuel::sds
-inherits scaleio_fuel::params {
-
-    $scaleio = $::fuel_settings['scaleio']
+class scaleio_fuel::sds {
 
     class {'::scaleio':
           password => $admin_password,

@@ -3,24 +3,20 @@
 # ['cinder', 'compute'] will be applied only on
 # cinder and compute nodes
 - role: ['primary-controller']
-  # stage: post_deployment/2000
-  stage: pre_deployment/2000
+  stage: post_deployment/2000
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/check_environment_configuration.pp
-    puppet_modules: puppet/modules
-    timeout: 300
-
-
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 360
 
 - role: ['primary-controller', 'controller']
-  # stage: post_deployment/2050
-  stage: pre_deployment/2050
+  stage: post_deployment/2050
   type: puppet
   parameters:
     puppet_manifest: puppet/manifests/controller.pp
-    puppet_modules: puppet/modules
-    timeout: 300
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 360
 
 # - role: ['scaleio-gw']
 #   stage: post_deployment/2050

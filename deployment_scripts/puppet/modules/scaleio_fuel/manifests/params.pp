@@ -11,39 +11,47 @@ class scaleio_fuel::params
     $version          = $scaleio['version']
     $cluster_name     = $scaleio['cluster_name']
 
+    $nodes_hash = $::fuel_settings['nodes']
     $controller_nodes = concat(filter_nodes($nodes_hash,'role','primary-controller'), filter_nodes($nodes_hash,'role','controller'))
     $controller_internal_addresses = nodes_to_hash($controller_nodes,'name','internal_address')
     $controller_ips = ipsort(values($controller_internal_addresses))
 
-    if size($controller_nodes) < 4 {
+    if size($controller_nodes) < 3 {
         # TODO: assign nodes to ScaleIO roles. e.g. 1=>mdm1, 2=>mdm2, 3=>tb,
         # 4=>gw, 5...=>sds
-        fail('ScaleIO plugin needs at least 4 controller nodes')
+        fail('ScaleIO plugin needs at least 3 controller nodes')
     }
 
-    notice("IP Address ${::ipaddress}")
-
-    $role = 'mdm'
-
-    $mdm_ips = $controller_ips[0]
+    $mdm_ips = [$controller_ips[0], $controller_ips[1]]
     $tb_ip = $controller_ips[2]
     $gw_ip = $controller_ips[3]
 
-    #TODO: Populate $sio_sds_device with real information
-    #$sio_sds_device = Hash.new
+    $current_node = filter_nodes($nodes_hash,'role', $::fuel_settings['uid'])
+    $node_ip = $current_node[0]['internal_address']
 
-    # $nodes_hash = $::fuel_settings['nodes']
-    # $mdm_nodes = filter_nodes($nodes_hash,'role','scaleio-mdm')
-    # $mdm_internal_addresses = nodes_to_hash($mdm_nodes,'name','internal_address')
-    # $mdm_ips = ipsort(values($mdm_internal_addresses))
-    #
-    # $tb_nodes = filter_nodes($nodes_hash,'role','scaleio-tb')
-    # $tb_internal_addresses = nodes_to_hash($tb_nodes,'name','internal_address')
-    # $tb_ips = ipsort(values($tb_internal_addresses))
-    #
-    #
+    #TODO: refactor needed
+    if $node_ip == $mdm_ips[0] {
+        $role = 'mdm'
+    }
+    elsif $node_ip == $mdm_ips[1] {
+        $role = 'mdm'
+    }
+    elsif $node_ip == $tb_ip {
+        $role = 'tb'
+    }
+    elsif $node_ip == $gw_ip {
+        $role = 'gw'
+    }
+    else {
+        $role = 'sds'
+    }
+
+    notice("Node role: ${role}, IP: ${node_ip}")
+
+    #TODO: Populate $sio_sds_device with real information
+    $sio_sds_device = {}
+
     # $sds_nodes = filter_nodes($nodes_hash,'role','scaleio-sds')
-    # $sio_sds_device = Hash.new
     # for sds_node in $sds_nodes
     #   $sio_sds_device[:sds_node['name']] = Hash.new
     #   $sio_sds_device[:sds_node['name']]['ip'] = :sds_node.internal_address
