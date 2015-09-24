@@ -16,6 +16,10 @@ class scaleio_fuel::params
     $controller_internal_addresses = nodes_to_hash($controller_nodes,'name','internal_address')
     $controller_ips = ipsort(values($controller_internal_addresses))
 
+    notice("Controller Nodes: ${controller_nodes}")
+    notice("controller_internal_addresses: ${controller_internal_addresses}")
+    notice("controller_ips: ${controller_ips}")
+
     if size($controller_nodes) < 4 {
         fail('ScaleIO plugin needs at least 4 controller nodes')
     }
@@ -24,9 +28,10 @@ class scaleio_fuel::params
     $tb_ip = $controller_ips[2]
     $gw_ip = $controller_ips[3]
 
-    $current_node = filter_nodes($nodes_hash,'role', $::fuel_settings['uid'])
-    $current_node_ip = values(nodes_to_hash($current_node,'name','internal_address'))
-    $node_ip = $current_node_ip[0]
+    $current_node = filter_nodes($nodes_hash,'uid', $::fuel_settings['uid'])
+    $node_ip = join(values(nodes_to_hash($current_node,'name','internal_address')))
+
+    notice("Current Node: ${current_node}")
 
     #TODO: refactor needed
     if $node_ip == $mdm_ips[0] {
