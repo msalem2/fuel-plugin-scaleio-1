@@ -25,7 +25,7 @@ class scaleio_fuel::params
     $gw_ip = $controller_ips[3]
 
     $current_node = filter_nodes($nodes_hash,'role', $::fuel_settings['uid'])
-    $current_node_ip = join(values(nodes_to_hash($current_node,'name','internal_address')))
+    $current_node_ip = values(nodes_to_hash($current_node,'name','internal_address'))
     $node_ip = $current_node_ip[0]
 
     #TODO: refactor needed
