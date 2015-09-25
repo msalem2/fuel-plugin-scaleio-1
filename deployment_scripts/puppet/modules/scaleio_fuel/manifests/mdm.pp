@@ -1,6 +1,6 @@
 class scaleio_fuel::mdm {
 
-    class {'scaleio::params':
+    class {'::scaleio':
           password => $admin_password,
           version => $version,
           mdm_ip => $mdm_ips,
@@ -10,5 +10,4 @@ class scaleio_fuel::mdm {
           callhome_cfg => $callhome_cfg,
           components => ['mdm','sds','sdc','callhome'],
     }
-    include scaleio
 }

@@ -8,7 +8,4 @@ class scaleio_fuel::sds {
           sds_ssd_env_flag => true,
           components => ['sds','lia'],
     }
-
-    include scaleio
-
 }

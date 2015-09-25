@@ -1,6 +1,6 @@
 class scaleio_fuel::tb {
 
-    class {'scaleio::params':
+    class {'::scaleio':
           password => $admin_password,
           version => $version,
           mdm_ip => $mdm_ips,
@@ -10,6 +10,4 @@ class scaleio_fuel::tb {
           callhome_cfg => $callhome_cfg,
           components => ['tb','sds','sdc'],
     }
-    include scaleio
-
 }

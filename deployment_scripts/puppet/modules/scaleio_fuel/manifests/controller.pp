@@ -7,5 +7,4 @@ inherits scaleio_fuel::params {
        'gw':      { include scaleio_fuel::gateway }
        'sds':     { include scaleio_fuel::sds }
     }
-
 }
