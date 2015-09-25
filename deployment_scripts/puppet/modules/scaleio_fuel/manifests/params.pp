@@ -10,6 +10,7 @@ class scaleio_fuel::params
     $gw_password      = $scaleio['gw_password']
     $version          = $scaleio['version']
     $cluster_name     = $scaleio['cluster_name']
+    $sio_sds_device   = {} #TODO: Populate $sio_sds_device with real information
 
     $nodes_hash = $::fuel_settings['nodes']
     $controller_nodes = concat(filter_nodes($nodes_hash,'role','primary-controller'), filter_nodes($nodes_hash,'role','controller'))
@@ -24,7 +25,7 @@ class scaleio_fuel::params
         fail('ScaleIO plugin needs at least 4 controller nodes')
     }
 
-    $mdm_ips = [$controller_ips[0], $controller_ips[1]]
+    $mdm_ip = [$controller_ips[0], $controller_ips[1]]
     $tb_ip = $controller_ips[2]
     $gw_ip = $controller_ips[3]
 
@@ -33,11 +34,12 @@ class scaleio_fuel::params
 
     notice("Current Node: ${current_node}")
 
+    $role = 'sds'
     #TODO: refactor needed
-    if $node_ip == $mdm_ips[0] {
+    if $node_ip == $mdm_ip[0] {
         $role = 'mdm'
     }
-    elsif $node_ip == $mdm_ips[1] {
+    elsif $node_ip == $mdm_ip[1] {
         $role = 'mdm'
     }
     elsif $node_ip == $tb_ip {
@@ -46,14 +48,8 @@ class scaleio_fuel::params
     elsif $node_ip == $gw_ip {
         $role = 'gw'
     }
-    else {
-        $role = 'sds'
-    }
 
     notice("Node role: ${role}, IP: ${node_ip}")
-
-    #TODO: Populate $sio_sds_device with real information
-    $sio_sds_device = {}
 
     # $sds_nodes = filter_nodes($nodes_hash,'role','scaleio-sds')
     # for sds_node in $sds_nodes
