@@ -34,7 +34,6 @@ class scaleio_fuel::params
 
     notice("Current Node: ${current_node}")
 
-    $role = 'sds'
     #TODO: refactor needed
     if $node_ip == $mdm_ip[0] {
         $role = 'mdm'
@@ -47,6 +46,9 @@ class scaleio_fuel::params
     }
     elsif $node_ip == $gw_ip {
         $role = 'gw'
+    }
+    else {
+        $role = 'sds'
     }
 
     notice("Node role: ${role}, IP: ${node_ip}")
