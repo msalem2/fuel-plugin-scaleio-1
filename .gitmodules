@@ -1,3 +1,0 @@
-[submodule "deployment_scripts/puppet/modules/scaleio"]
-	path = deployment_scripts/puppet/modules/scaleio
-	url = https://github.com/emccode/puppet-scaleio
