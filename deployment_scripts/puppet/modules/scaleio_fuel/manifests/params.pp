@@ -5,12 +5,14 @@ class scaleio_fuel::params
     }
 
     # Get input parameters from the web UI
-    $scaleio          = $::fuel_settings['scaleio']
-    $admin_password   = $scaleio['password']
-    $gw_password      = $scaleio['gw_password']
-    $version          = $scaleio['version']
-    $cluster_name     = $scaleio['cluster_name']
-    $sio_sds_device   = {} #TODO: Populate $sio_sds_device with real information
+    $scaleio            = $::fuel_settings['scaleio']
+    $admin_password     = $scaleio['password']
+    $gw_password        = $scaleio['gw_password']
+    $version            = $scaleio['version']
+    $cluster_name       = $scaleio['cluster_name']
+    $protection_domain  = $scaleio['protection_domain']
+    $storage_pool       = $scaleio['storage_pool']
+    $pool_size          = $scaleio['pool_size']
 
     $nodes_hash = $::fuel_settings['nodes']
     $controller_nodes = concat(filter_nodes($nodes_hash,'role','primary-controller'), filter_nodes($nodes_hash,'role','controller'))
@@ -51,19 +53,20 @@ class scaleio_fuel::params
         $role = 'sds'
     }
 
-    notice("Node role: ${role}, IP: ${node_ip}")
+    notice("Node role: ${role}, IP: ${node_ip}, FQDN: ${fqdn}")
 
-    # $sds_nodes = filter_nodes($nodes_hash,'role','scaleio-sds')
-    # for sds_node in $sds_nodes
-    #   $sio_sds_device[:sds_node['name']] = Hash.new
-    #   $sio_sds_device[:sds_node['name']]['ip'] = :sds_node.internal_address
-    #   $sio_sds_device[:sds_node['name']]['protection_domain'] = 'protection_domain1'
-    #   $sio_sds_device[:sds_node['name']]['devices'] = {
-    #       '/var/sio_device1' => {  'size' => '100GB',
-    #                                         'storage_pool' => 'capacity'
-    #                                       },
-    #     }
-    # end
+    $sio_sds_device = {
+      "${fqdn}" => {
+        'ip' => $node_ip,
+        'protection_domain' => $protection_domain,
+        'devices' => {
+          '/var/sio_device1' => {
+            'size' => $pool_size,
+            'storage_pool' => 'capacity'
+          }
+        }
+      }
+    }
 
 
     #TODO: Get callhome information from UI

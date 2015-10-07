@@ -1,35 +1,27 @@
 attributes:
-  scaleio_repo:
-    value: ''
-    label: 'ScaleIO repo URL'
-    description: 'Repo URL for ScaleIO software'
-    weight: 4
-    type: "text"
+
   password:
     type: "password"
     weight: 10
     value: ""
-    label: "Admin Password"
+    label: "Admin password"
     description: "Type ScaleIO Admin password"
     regex:
       source: '^[\S]{4,}$'
       error: "You must provide a password with at least 4 characters"
 
   version:
-    type: "select"
+    type: "text"
     weight: 20
     value: "1.31-2333.2"
     label: "Version"
-    description: "Select the ScaleIO version"
-    values:
-      - data: "1.31-2333.2"
-        label: "1.31-2333.2"
+    description: "ScaleIO version"
 
   gw_password:
     type: "password"
     weight: 30
     value: ""
-    label: "Password"
+    label: "Gateway password"
     description: "Type a password for the gateway"
     regex:
       source: '^[\S]{4,}$'
@@ -43,27 +35,28 @@ attributes:
     description: "Name of the ScaleIO cluster"
     regex:
       source: '\S'
+      error: "Cluster name cannot be empty"
+
   protection_domain:
-    value: ''
-    label: 'ScaleIO protection domain'
-    description: 'Protection domain for ScaleIO'
+    type: "text"
+    value: "pd1"
+    label: "ScaleIO protection domain"
+    description: "Protection domain for ScaleIO"
     weight: 45
+
+  storage_pool:
     type: "text"
-  storage_pool_1:
-    value: ''
-    label: 'ScaleIO storage pool 1'
-    description: 'First storage pool for ScaleIO'
+    value: "sp1"
+    label: "ScaleIO storage pool"
+    description: "First storage pool for ScaleIO"
     weight: 50
+
+  pool_size:
     type: "text"
-  drive_list_1:
-    value: ''
-    label: 'Driver labels for the first storage pool'
-    description: 'Comma separated list of driver labels for the first storage pool'
+    value: "100GB"
+    label: "Storage pool size"
+    description: "Size of the Storage Pool."
     weight: 55
-    type: "text"
-  fault_sets:
-    value: ''
-    label: 'Fault sets list'
-    description: 'Comma separated list of fault sets'
-    weight: 60
-    type: "text"
+    # regex:
+    #   source: '(?<sizevalue>\p{N}+)(?:\s*)(?<sizetype>(?:MB|KB|GB|B)\b)'
+    #   error: 'You must provide a valid size unit (B, KB, MB, GB). E.g.: 100GB'
