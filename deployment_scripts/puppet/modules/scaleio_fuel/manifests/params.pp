@@ -62,7 +62,7 @@ class scaleio_fuel::params
         'devices' => {
           '/var/sio_device1' => {
             'size' => $pool_size,
-            'storage_pool' => 'capacity'
+            'storage_pool' => $storage_pool,
           }
         }
       }
