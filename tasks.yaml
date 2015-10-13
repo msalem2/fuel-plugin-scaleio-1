@@ -16,7 +16,7 @@
   parameters:
     puppet_manifest: puppet/manifests/controller.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
-    timeout: 360
+    timeout: 600
 
 # - role: ['scaleio-gw']
 #   stage: post_deployment/2050
