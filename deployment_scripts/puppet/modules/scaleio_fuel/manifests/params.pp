@@ -16,11 +16,11 @@ class scaleio_fuel::params
 
     $nodes_hash = $::fuel_settings['nodes']
     $controller_nodes = concat(filter_nodes($nodes_hash,'role','primary-controller'), filter_nodes($nodes_hash,'role','controller'))
-    $controller_internal_addresses = nodes_to_hash($controller_nodes,'name','internal_address')
-    $controller_ips = ipsort(values($controller_internal_addresses))
+    $controller_hashes = nodes_to_hash($controller_nodes,'name','internal_address')
+    $controller_ips = ipsort(values($controller_hashes))
 
-    notice("Controller Nodes: ${controller_nodes}")
-    notice("controller_internal_addresses: ${controller_internal_addresses}")
+    notice("controller_nodes: ${controller_nodes}")
+    notice("controller_hashes: ${controller_hashes}")
     notice("controller_ips: ${controller_ips}")
 
     if size($controller_nodes) < 4 {
@@ -53,10 +53,10 @@ class scaleio_fuel::params
         $role = 'sds'
     }
 
-    notice("Node role: ${role}, IP: ${node_ip}, FQDN: ${fqdn}")
+    notice("Node role: ${role}, IP: ${node_ip}, FQDN: ${::fqdn}")
 
     $sio_sds_device = {
-      "${fqdn}" => {
+      "${::fqdn}" => {
         'ip' => $node_ip,
         'protection_domain' => $protection_domain,
         'devices' => {
