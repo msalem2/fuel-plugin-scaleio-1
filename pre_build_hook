@@ -14,4 +14,4 @@ wget -nv ftp://ftp.emc.com/Downloads/ScaleIO/ScaleIO_RHEL6_Download.zip -O /tmp/
 # Unzip files
 unzip -o /tmp/ScaleIO_RHEL6_Download.zip -d /tmp/scaleio/
 # Copy RPM files to the repository
-cp /tmp/scaleio/ScaleIO_*_RHEL6*/*.rpm "${RPM_REPO}"
+cp /tmp/scaleio/ScaleIO_*_RHEL6*/*.rpm /tmp/scaleio/ScaleIO_*_Gateway_for_Linux*/*.rpm /tmp/scaleio/ScaleIO_*_GUI_for_Linux*/*.rpm "${RPM_REPO}"
