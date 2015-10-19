@@ -1,16 +1,4 @@
-# Fuel Plugin for ScaleIO
-
-**Build:** <a href="http://buildserver.emccode.com/viewType.html?-buildTypeId=FuelPluginsForScaleIO_FuelPluginScaleio&guest=1"><img src="http://buildserver.emccode.com/app/rest/builds/buildType:(id:FuelPluginsForScaleIO_FuelPluginScaleio)/statusIcon"/></a>
-
-### Contents
-
-- [Overview](#Overview)
-- [Requirements](#requirements)
-- [Recommendations](#recommendations)
-- [Limitations](#limitations)
-- [Contributions](#contributions)
-- [License](#lincense)
-
+# Fuel Plugin for ScaleIO <a href="http://buildserver.emccode.com/viewType.html?-buildTypeId=FuelPluginsForScaleIO_FuelPluginScaleio&guest=1"><img src="http://buildserver.emccode.com/app/rest/builds/buildType:(id:FuelPluginsForScaleIO_FuelPluginScaleio)/statusIcon"/></a>
 
 ## Overview
 
