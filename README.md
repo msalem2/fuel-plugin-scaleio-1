@@ -1,3 +1,7 @@
+## WARNING!
+> **This repository is deprecated.** Please use [openstack/fuel-plugin-scaleio](https://github.com/openstack/fuel-plugin-scaleio) repository.
+
+
 # Fuel Plugin for ScaleIO <a href="http://buildserver.emccode.com/viewType.html?-buildTypeId=FuelPluginsForScaleIO_FuelPluginScaleio&guest=1"><img src="http://buildserver.emccode.com/app/rest/builds/buildType:(id:FuelPluginsForScaleIO_FuelPluginScaleio)/statusIcon"/></a>
 
 ## Overview
